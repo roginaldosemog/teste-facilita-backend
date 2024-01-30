@@ -15,7 +15,7 @@ async function connect() {
     const client = await pool.connect();
     console.log("connected to db");
 
-    const res = await client.query("select now()");
+    const res = await client.query("SELECT now()");
     console.log(res.rows[0]);
 
     client.release();
@@ -25,3 +25,13 @@ async function connect() {
 }
 
 connect();
+
+async function getCustomers() {
+    const client = await connect();
+    const res = await client.query("SELECT * FROM CUSTOMERS");
+    return res.rows;
+}
+
+module.exports = {
+    getCustomers
+}

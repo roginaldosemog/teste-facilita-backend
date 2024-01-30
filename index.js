@@ -14,6 +14,11 @@ app.get("/", (req, res) => {
     })
 })
 
+app.get("/customers", async (req, res) => {
+    const clientes = await db.getCustomers();
+    res.json(clientes);
+})
+
 app.listen(port);
 
 console.log(`Server running at port ${port}`);
